@@ -1,38 +1,67 @@
-# Ex.No:3(E)  STRINGBUILDER OBJECT REFERENCE IN JAVA
+# Ex.No:3(E) INNER CLASS
+
+
+## QUESTION:
+Write a Java program to create an inner class and access it from the outer class.
+
 
 ## AIM:
-To write a Java program that creates a StringBuilder object using a given string and assigns its reference to the variable sb.
+To write a Java program that demonstrates the use of an Inner Class and how it can be accessed from the Outer Class
 
 ## ALGORITHM :
 1.	Start the program.
-2.	Declare and initialize a string variable str1.
-3.	Create a StringBuilder object by passing str1 to its constructor.
-4.	Store the object reference in the variable sb.
-5.	Print the contents of sb to verify the output.
-6.	End the program.
+2.	Import the necessary package 'java.util'
+3.	Create an outer class.
+4. Inside the outer class, declare and define an inner class.
+5. Create an object of the outer class.
+6. Using the outer class object, create an object of the inner class.
+7. Call a method of the inner class through its object.
+8. Display the output.
+9. Stop the program.
+
+
 
 
 ## PROGRAM:
- ```
-/*
-Program to implement a StringBuilder Object Reference in Java
-Developed by: 
-RegisterNumber:  
-*/
+
+
+## Developed By : BALAJI R
+## Register Number : 212224050004
+
+
+
+## SOURCE CODE:
 ```
+import java.util.Scanner;
 
-## Sourcecode.java:
+public class OuterClass 
+{
+    class InnerClass
+    {
+        void displayMessage(String name)
+        {
+            System.out.println("Hello, " + name + "! This message is from the Inner Class.");
+        }
+    }
 
-
-
-
-
-
-
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String name = sc.nextLine();
+        OuterClass outer = new OuterClass();          
+        OuterClass.InnerClass inner = outer.new InnerClass(); 
+        inner.displayMessage(name); 
+    }
+}
+```
 ## OUTPUT:
 
-
+![java35](https://github.com/ABINAYA-27-76/19AI307_ODD-25-26-/blob/056a3e4c1367cee76213b9fd31b087383b53c8b0/19AI307_JAVA(25-26)/Module-03/DAY-5(A)/java35.png)
 
 ## RESULT:
-Thus the  Java program successfully creates a StringBuilder object using the given string and stores the reference in the variable sb. The contents of the object are printed using the reference variable.
+Thus, the Java program to implement an Inner Class and access it from the Outer Class was successfully executed.
+
+
+
+
+
 
