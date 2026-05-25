@@ -1,51 +1,101 @@
-# Ex.No:4(E)  PARAMETERIZED CONSTRUCTOR
+# Ex.No:4(D) DESIGN PATTERN  ---- BEHAVIOUR PATTERN
+
+## QUESTION:
+Develop a weather monitoring system using the Observer Design Pattern. The WeatherStation acts as the subject and notifies multiple display units (MobileDisplay and LEDDisplay) whenever temperature changes. Implement the behavioural pattern so that all registered displays automatically update when the temperature is modified.
+
 ## AIM:
-To write a parameterized constructor in the Employee class that initializes name and designation, and then call getter methods in the main() method of another class (Sample) to display the values.
+To implement the Observer Behavioural Design Pattern in Java by creating a WeatherStation (subject) that broadcasts updates to multiple observers whenever data changes.
 
 ## ALGORITHM :
-
-	1.	Start the program.
-2.	Define a class Employee:
-    a.	  Declare two private string variables: name and designation.
-3.	Create a parameterized constructor in Employee:
-4.	Accept two parameters: name and designation.
-5.	Assign the parameters to the class fields.
-6.	Define two getter methods in the Employee class:
-     a.	getName() – returns the value of name.
-     b.	getDesg() – returns the value of designation.
-7.	Create another class Sample with the main method.
-8.	Inside the main method:
-     a.	Create an object of Employee using the constructor and pass "John" and "Asst.Manager" as arguments.
-     b.	Call getName() and store the result in a variable empName.
-     c.	Call getDesg() and store the result in a variable empDesg.
-9.	Print the values of empName and empDesg.
-10.	End the program
-
-
+1.	Start the program.
+2.	Import the necessary package 'java.util'
+3.	Create an Observer interface with an update() method.
+4.	Create a Subject interface with register(), remove(), and notifyObservers().
+5.	Implement WeatherStation class that maintains temperature and observer list.
+6.	Implement MobileDisplay and LEDDisplay classes as observers.
+7.	Read temperature input from the user.
+8.	Update the WeatherStation and notify all observers.
+9.	Display the updated messages from all observers.
+10.	End the program.
+11.	
 ## PROGRAM:
  ```
 /*
-Program to implement a Parameterized Constructor Using Java
-Developed by: 
-RegisterNumber:  
+Program to implement a Behaviour Pattern using Java
+Developed by: BALAJI R
+RegisterNumber: 212224050004
 */
 ```
 
-## Sourcecode.java:
+## SOURCE CODE:
 
+```
+import java.util.*;
 
+interface Observer {
+    void update(int temperature);
+}
 
+interface Subject {
+    void register(Observer o);
+    void remove(Observer o);
+    void notifyObservers();
+}
 
+class WeatherStation implements Subject {
+    private int temperature;
+    private List<Observer> observers = new ArrayList<>();
 
+    public void setTemperature(int temp) {
+        this.temperature = temp;
+        notifyObservers();
+    }
 
+    public void register(Observer o) {
+        observers.add(o);
+    }
+
+    public void remove(Observer o) {
+        observers.remove(o);
+    }
+
+    public void notifyObservers() {
+        for (Observer obs : observers) {
+            obs.update(temperature);
+        }
+    }
+}
+
+class MobileDisplay implements Observer {
+    public void update(int temperature) {
+        System.out.println("Mobile Display: Temperature updated → " + temperature + "°C");
+    }
+}
+
+class LEDDisplay implements Observer {
+    public void update(int temperature) {
+        System.out.println("LED Display: Temperature changed → " + temperature + "°C");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        WeatherStation ws = new WeatherStation();
+        ws.register(new MobileDisplay());
+        ws.register(new LEDDisplay());
+
+        int temp = sc.nextInt();
+        ws.setTemperature(temp);
+    }
+}
+```
 
 ## OUTPUT:
 
-
+<img width="814" height="194" alt="image" src="https://github.com/user-attachments/assets/80c75c20-f6b6-4c69-a7d4-68909c28ccbe" />
 
 ## RESULT:
-Thus, the  java program was successfully demonstrates the use of a parameterized constructor to initialize class fields.
 
- 
-
-
+Thus the output is executed successfully.
